@@ -1,3 +1,77 @@
 <resources>
-    <string name="app_name">My AndroidApp</string>
+    <string name="app_name">聊天应用</string>
+
+    <!-- Activity标题 -->
+    <string name="login_title">用户登录</string>
+    <string name="main_title">聊天应用</string>
+    <string name="contact_title">通讯录管理</string>
+    <string name="chat_title">聊天</string>
+
+    <!-- 登录界面 -->
+    <string name="username_hint">请输入用户名</string>
+    <string name="password_hint">请输入密码</string>
+    <string name="login_button">登录</string>
+    <string name="select_avatar">选择头像</string>
+    <string name="login_loading">正在登录...</string>
+
+    <!-- 主界面 -->
+    <string name="welcome_message">欢迎使用聊天应用</string>
+    <string name="user_info">用户信息</string>
+    <string name="friend_list">好友列表</string>
+    <string name="message_notifications">消息通知</string>
+    <string name="search_friends">搜索好友</string>
+    <string name="contacts_button">通讯录</string>
+    <string name="messages_button">消息</string>
+
+    <!-- 菜单选项 -->
+    <string name="menu_back">返回</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_help">帮助</string>
+    <string name="menu_about">关于</string>
+
+    <!-- 通讯录管理 -->
+    <string name="add_contact">添加联系人</string>
+    <string name="delete_contact">删除联系人</string>
+    <string name="search_contacts">搜索联系人</string>
+    <string name="contact_username">用户名</string>
+    <string name="contact_nickname">昵称</string>
+    <string name="contact_signature">个性签名</string>
+
+    <!-- 聊天界面 -->
+    <string name="message_hint">输入消息...</string>
+    <string name="send_button">发送</string>
+    <string name="chat_with">与%s聊天</string>
+
+    <!-- 通知相关 -->
+    <string name="notification_message">消息</string>
+    <string name="notification_friend_request">好友请求</string>
+    <string name="notification_system">系统通知</string>
+    <string name="unread_count">%d条未读</string>
+    <string name="clear_notifications">清除</string>
+    <string name="mark_as_read">标记为已读</string>
+
+    <!-- 通用文本 -->
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+    <string name="add">添加</string>
+    <string name="edit">编辑</string>
+    <string name="save">保存</string>
+    <string name="loading">加载中...</string>
+    <string name="no_data">暂无数据</string>
+    <string name="online">在线</string>
+    <string name="offline">离线</string>
+
+    <!-- 错误提示 -->
+    <string name="error_empty_username">用户名不能为空</string>
+    <string name="error_empty_password">密码不能为空</string>
+    <string name="error_login_failed">登录失败</string>
+    <string name="error_network">网络连接失败</string>
+    <string name="error_unknown">未知错误</string>
+
+    <!-- 成功提示 -->
+    <string name="success_login">登录成功</string>
+    <string name="success_add_contact">联系人添加成功</string>
+    <string name="success_delete_contact">联系人删除成功</string>
+    <string name="success_send_message">消息发送成功</string>
 </resources>
