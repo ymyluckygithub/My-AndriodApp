@@ -14,6 +14,7 @@ import cn.edu.ecust.myandroidapp.utils.Constants
 import cn.edu.ecust.myandroidapp.utils.PreferenceManager
 import cn.edu.ecust.myandroidapp.widget.CustomTitleBar
 
+//测试
 class LoginActivity : AppCompatActivity() {
     
     private lateinit var titleBar: CustomTitleBar
