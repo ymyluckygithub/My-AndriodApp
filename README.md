@@ -75,11 +75,11 @@
 ```kotlin
 private fun initAvatarGrid() {
     val avatarList = listOf(
-        R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3,
-        R.drawable.avatar_4, R.drawable.avatar_5, R.drawable.avatar_6,
-        R.drawable.avatar_7, R.drawable.avatar_8,
-        R.drawable.avatar_9, // 新添加的头像
-        R.drawable.avatar_10 // 新添加的头像
+        R.drawable.avatar1, R.drawable.avatar2, R.drawable.avatar3,
+        R.drawable.avatar4, R.drawable.avatar5, R.drawable.avatar6,
+        R.drawable.avatar7, R.drawable.avatar8,
+        R.drawable.avatar9, // 新添加的头像
+        R.drawable.avatar10 // 新添加的头像
     )
     // ...
 }

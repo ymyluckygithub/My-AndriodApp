@@ -70,11 +70,14 @@ class ContactActivity : AppCompatActivity() {
     private fun loadContactData() { // 加载联系人数据
         contactList.clear()
         contactList.addAll(listOf(
-            Friend("1", "张三", "小张", R.drawable.avatar_1, "", true, System.currentTimeMillis(), "今天天气真好！"),
-            Friend("2", "李四", "小李", R.drawable.avatar_2, "", false, System.currentTimeMillis() - 3600000, "忙碌的一天"),
-            Friend("3", "王五", "", R.drawable.avatar_3, "", true, System.currentTimeMillis(), "学习使我快乐"),
-            Friend("4", "赵六", "小赵", R.drawable.avatar_4, "", false, System.currentTimeMillis() - 7200000, ""),
-            Friend("5", "钱七", "", R.drawable.avatar_5, "", true, System.currentTimeMillis(), "代码改变世界")
+            Friend("1", "张三", "小张", R.drawable.avatar1, "", true, System.currentTimeMillis(), "今天天气真好！"),
+            Friend("2", "李四", "小李", R.drawable.avatar2, "", false, System.currentTimeMillis() - 3600000, "忙碌的一天"),
+            Friend("3", "王五", "", R.drawable.avatar3, "", true, System.currentTimeMillis(), "学习使我快乐"),
+            Friend("4", "赵六", "小赵", R.drawable.avatar4, "", false, System.currentTimeMillis() - 7200000, ""),
+            Friend("5", "钱七", "", R.drawable.avatar5, "", true, System.currentTimeMillis(), "代码改变世界"),
+            Friend("6", "孙八", "小孙", R.drawable.avatar6, "", true, System.currentTimeMillis(), "热爱生活"),
+            Friend("7", "周九", "", R.drawable.avatar7, "", false, System.currentTimeMillis() - 1800000, "努力工作"),
+            Friend("8", "吴十", "小吴", R.drawable.avatar8, "", true, System.currentTimeMillis(), "保持微笑")
         ))
         contactAdapter.updateContactList(contactList)
     }

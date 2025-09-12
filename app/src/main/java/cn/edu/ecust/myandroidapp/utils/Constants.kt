@@ -21,8 +21,8 @@ object Constants {
     
     // Avatar Resource IDs
     val DEFAULT_AVATARS = arrayOf(
-        "avatar_1", "avatar_2", "avatar_3", "avatar_4",
-        "avatar_5", "avatar_6", "avatar_7", "avatar_8"
+        "avatar1", "avatar2", "avatar3", "avatar4",
+        "avatar5", "avatar6", "avatar7", "avatar8"
     )
     
     // Menu Item IDs
