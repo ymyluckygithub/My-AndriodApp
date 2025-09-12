@@ -68,13 +68,13 @@
             <GridView
                 android:id="@+id/gv_avatars"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="200dp"
                 android:layout_marginBottom="32dp"
                 android:numColumns="4"
-                android:horizontalSpacing="12dp"
-                android:verticalSpacing="12dp"
+                android:horizontalSpacing="8dp"
+                android:verticalSpacing="8dp"
                 android:stretchMode="columnWidth"
-                android:padding="8dp" />
+                android:padding="16dp" />
 
             <FrameLayout
                 android:layout_width="match_parent"
