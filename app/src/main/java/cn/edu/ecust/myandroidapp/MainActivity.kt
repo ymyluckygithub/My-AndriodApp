@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.PopupMenu
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchView: SearchView
     private lateinit var tvUnreadCount: TextView
     private lateinit var btnClearNotifications: Button
+    private lateinit var btnMenu: ImageButton
     private lateinit var friendAdapter: FriendAdapter
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var preferenceManager: PreferenceManager
@@ -119,6 +122,9 @@ class MainActivity : AppCompatActivity() {
             Log.d("MainActivity", "Finding btn_clear_notifications")
             btnClearNotifications = findViewById(R.id.btn_clear_notifications)
 
+            Log.d("MainActivity", "Finding btn_menu")
+            btnMenu = findViewById(R.id.btn_menu)
+
             Log.d("MainActivity", "All views found successfully")
         } catch (e: Exception) {
             Log.e("MainActivity", "Error finding views", e)
@@ -142,6 +148,11 @@ class MainActivity : AppCompatActivity() {
 
         btnClearNotifications.setOnClickListener {
             clearAllNotifications()
+        }
+
+        btnMenu.setOnClickListener {
+            Log.d("MainActivity", "Menu button clicked")
+            showPopupMenu(it) // 显示弹出菜单
         }
     }
 
@@ -204,14 +215,14 @@ class MainActivity : AppCompatActivity() {
     private fun loadFriendData() { // 加载好友数据（模拟数据）
         friendList.clear()
         friendList.addAll(listOf(
-            Friend("1", "张三", "小张", R.drawable.avatar_1, "", true, System.currentTimeMillis(), "今天天气真好！"),
-            Friend("2", "李四", "小李", R.drawable.avatar_2, "", false, System.currentTimeMillis() - 3600000, "忙碌的一天"),
-            Friend("3", "王五", "", R.drawable.avatar_3, "", true, System.currentTimeMillis(), "学习使我快乐"),
-            Friend("4", "赵六", "小赵", R.drawable.avatar_4, "", false, System.currentTimeMillis() - 7200000, ""),
-            Friend("5", "钱七", "", R.drawable.avatar_5, "", true, System.currentTimeMillis(), "代码改变世界"),
-            Friend("6", "孙八", "小孙", R.drawable.avatar_6, "", true, System.currentTimeMillis(), "热爱生活"),
-            Friend("7", "周九", "", R.drawable.avatar_7, "", false, System.currentTimeMillis() - 1800000, "努力工作"),
-            Friend("8", "吴十", "小吴", R.drawable.avatar_8, "", true, System.currentTimeMillis(), "保持微笑")
+            Friend("1", "张三", "小张", R.drawable.avatar1, "", true, System.currentTimeMillis(), "今天天气真好！"),
+            Friend("2", "李四", "小李", R.drawable.avatar2, "", false, System.currentTimeMillis() - 3600000, "忙碌的一天"),
+            Friend("3", "王五", "", R.drawable.avatar3, "", true, System.currentTimeMillis(), "学习使我快乐"),
+            Friend("4", "赵六", "小赵", R.drawable.avatar4, "", false, System.currentTimeMillis() - 7200000, ""),
+            Friend("5", "钱七", "", R.drawable.avatar5, "", true, System.currentTimeMillis(), "代码改变世界"),
+            Friend("6", "孙八", "小孙", R.drawable.avatar6, "", true, System.currentTimeMillis(), "热爱生活"),
+            Friend("7", "周九", "", R.drawable.avatar7, "", false, System.currentTimeMillis() - 1800000, "努力工作"),
+            Friend("8", "吴十", "小吴", R.drawable.avatar8, "", true, System.currentTimeMillis(), "保持微笑")
         ))
         Log.d("MainActivity", "Friend data loaded: ${friendList.size} friends")
     }
@@ -225,7 +236,7 @@ class MainActivity : AppCompatActivity() {
                 content = "你好，在吗？",
                 senderId = "1",
                 senderName = "张三",
-                senderAvatar = R.drawable.avatar_1,
+                senderAvatar = R.drawable.avatar1,
                 timestamp = System.currentTimeMillis() - 300000,
                 type = Notification.NotificationType.MESSAGE,
                 isRead = false,
@@ -237,7 +248,7 @@ class MainActivity : AppCompatActivity() {
                 content = "明天一起吃饭吧",
                 senderId = "2",
                 senderName = "李四",
-                senderAvatar = R.drawable.avatar_2,
+                senderAvatar = R.drawable.avatar2,
                 timestamp = System.currentTimeMillis() - 1800000,
                 type = Notification.NotificationType.MESSAGE,
                 isRead = false,
@@ -249,7 +260,7 @@ class MainActivity : AppCompatActivity() {
                 content = "",
                 senderId = "3",
                 senderName = "王五",
-                senderAvatar = R.drawable.avatar_3,
+                senderAvatar = R.drawable.avatar3,
                 timestamp = System.currentTimeMillis() - 3600000,
                 type = Notification.NotificationType.FRIEND_REQUEST,
                 isRead = false,
@@ -392,6 +403,40 @@ class MainActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    private fun showPopupMenu(view: android.view.View) { // 显示弹出菜单
+        Log.d("MainActivity", "Creating popup menu")
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.menuInflater.inflate(R.menu.main_menu, popupMenu.menu)
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.menu_contacts -> {
+                    openContacts()
+                    true
+                }
+                R.id.menu_settings -> {
+                    showToast("设置功能")
+                    true
+                }
+                R.id.menu_help -> {
+                    showToast("帮助功能")
+                    true
+                }
+                R.id.menu_about -> {
+                    showToast("关于")
+                    true
+                }
+                R.id.menu_logout -> {
+                    logout()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        popupMenu.show()
     }
 
     private fun showToast(message: String) { // 显示提示

@@ -14,7 +14,7 @@ import cn.edu.ecust.myandroidapp.utils.Constants
 import cn.edu.ecust.myandroidapp.utils.PreferenceManager
 import cn.edu.ecust.myandroidapp.widget.CustomTitleBar
 
-//测试
+
 class LoginActivity : AppCompatActivity() {
     
     private lateinit var titleBar: CustomTitleBar
@@ -75,8 +75,10 @@ class LoginActivity : AppCompatActivity() {
     
     private fun initAvatarGrid() { // 初始化头像网格
         val avatarList = listOf(
-            R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3, R.drawable.avatar_4,
-            R.drawable.avatar_5, R.drawable.avatar_6, R.drawable.avatar_7, R.drawable.avatar_8
+//            R.drawable.avatar_1, R.drawable.avatar_2, R.drawable.avatar_3, R.drawable.avatar_4,
+//            R.drawable.avatar_5, R.drawable.avatar_6, R.drawable.avatar_7, R.drawable.avatar_8
+            R.drawable.avatar1, R.drawable.avatar2, R.drawable.avatar3, R.drawable.avatar4,
+            R.drawable.avatar5, R.drawable.avatar6, R.drawable.avatar7, R.drawable.avatar8
         )
         
         avatarAdapter = AvatarAdapter(this, avatarList) { avatarResId ->
