@@ -144,11 +144,11 @@ object LocationService {
     }
     
     // 格式化距离显示
-    fun formatDistance(distanceKm: Double): String {
+    fun formatDistance(distance: Double): String {
         return when {
-            distanceKm < 1.0 -> "${(distanceKm * 1000).toInt()}m"
-            distanceKm < 10.0 -> String.format("%.1fkm", distanceKm)
-            else -> "${distanceKm.toInt()}km"
+            distance < 1.0 -> "${(distance * 1000).toInt()}m"
+            distance < 10.0 -> String.format("%.1fkm", distance)
+            else -> "${distance.toInt()}km"
         }
     }
     
@@ -171,11 +171,5 @@ object LocationService {
                 location.longitude >= -180.0 && location.longitude <= 180.0
     }
 
-    fun formatDistance(distance: Double): String { // 格式化距离显示
-        return when {
-            distance < 1.0 -> "${(distance * 1000).toInt()}m"
-            distance < 10.0 -> String.format("%.1fkm", distance)
-            else -> "${distance.toInt()}km"
-        }
-    }
+
 }

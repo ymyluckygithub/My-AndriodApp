@@ -134,7 +134,7 @@ class NearbyActivity : AppCompatActivity() {
                     user.id,
                     currentLat,
                     currentLon,
-                    Constants.MAX_SEARCH_RADIUS.toDouble()
+                    Constants.MAX_SEARCH_RADIUS
                 )
                 
                 allNearbyUsers.clear()

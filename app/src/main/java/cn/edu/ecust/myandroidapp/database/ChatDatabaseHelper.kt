@@ -200,3 +200,5 @@ class ChatDatabaseHelper(context: Context) : SQLiteOpenHelper(
             ALTER TABLE ${Constants.TABLE_USERS} ADD COLUMN ${Constants.COL_CREATED_AT} INTEGER DEFAULT (strftime('%s','now'));
             ALTER TABLE ${Constants.TABLE_USERS} ADD COLUMN ${Constants.COL_UPDATED_AT} INTEGER DEFAULT (strftime('%s','now'));
         """
+    }
+}
