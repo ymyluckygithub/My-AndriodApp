@@ -170,4 +170,12 @@ object LocationService {
                 location.latitude >= -90.0 && location.latitude <= 90.0 &&
                 location.longitude >= -180.0 && location.longitude <= 180.0
     }
+
+    fun formatDistance(distance: Double): String { // 格式化距离显示
+        return when {
+            distance < 1.0 -> "${(distance * 1000).toInt()}m"
+            distance < 10.0 -> String.format("%.1fkm", distance)
+            else -> "${distance.toInt()}km"
+        }
+    }
 }

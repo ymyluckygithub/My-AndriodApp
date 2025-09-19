@@ -54,6 +54,24 @@
             android:theme="@style/Theme.MyAndroidApp"
             android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
+
+        <!-- 匹配界面 -->
+        <activity
+            android:name=".MatchActivity"
+            android:exported="false"
+            android:label="随机匹配"
+            android:theme="@style/Theme.MyAndroidApp"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- 附近的人界面 -->
+        <activity
+            android:name=".NearbyActivity"
+            android:exported="false"
+            android:label="附近的人"
+            android:theme="@style/Theme.MyAndroidApp"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

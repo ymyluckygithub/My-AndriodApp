@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <cn.edu.ecust.myandroidapp.widget.CustomTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="附近的人"
+        app:showBackButton="true" />
+
+    <!-- 距离筛选区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/user_info_background"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/tv_distance_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="搜索半径：5km"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <SeekBar
+            android:id="@+id/seek_bar_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="50"
+            android:progress="5"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_user_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="找到 0 个附近用户"
+            android:textSize="12sp"
+            android:textColor="@color/colorAccent"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <!-- 用户列表 -->
+    <ListView
+        android:id="@+id/lv_nearby_users"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+
+    <!-- 空状态提示 -->
+    <LinearLayout
+        android:id="@+id/layout_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_location"
+            android:layout_marginBottom="16dp"
+            android:alpha="0.5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="附近暂时没有其他用户"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="尝试扩大搜索范围或稍后再试"
+            android:textSize="12sp"
+            android:textColor="@color/colorAccent"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</LinearLayout>

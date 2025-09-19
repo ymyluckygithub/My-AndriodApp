@@ -196,19 +196,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun startRandomMatch() { // 开始随机匹配
         try {
-            // 这里将来会跳转到MatchActivity
-            // val intent = Intent(this, MatchActivity::class.java)
-            // startActivity(intent)
-
-            // 临时显示匹配结果
-            currentUser?.let { user ->
-                val matches = matchingService.findRandomMatch(user.id)
-                if (matches.isNotEmpty()) {
-                    showToast("找到 ${matches.size} 个匹配用户！")
-                } else {
-                    showToast("暂时没有找到匹配用户")
-                }
-            }
+            // 跳转到MatchActivity
+            val intent = Intent(this, MatchActivity::class.java)
+            startActivity(intent)
         } catch (e: Exception) {
             Log.e("MainActivity", "Error starting random match", e)
             showToast("匹配功能暂时不可用")
@@ -217,30 +207,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun startNearbyPeople() { // 开始查找附近的人
         try {
-            // 这里将来会跳转到NearbyActivity
-            // val intent = Intent(this, NearbyActivity::class.java)
-            // startActivity(intent)
-
-            // 临时获取位置并显示附近用户
-            LocationHelper.getCurrentLocationWithUI(this) { location ->
-                if (location != null) {
-                    currentUser?.let { user ->
-                        val nearbyUsers = matchingService.findNearbyUsers(
-                            user.id,
-                            location.latitude,
-                            location.longitude,
-                            Constants.DEFAULT_SEARCH_RADIUS
-                        )
-                        if (nearbyUsers.isNotEmpty()) {
-                            showToast("找到 ${nearbyUsers.size} 个附近用户！")
-                        } else {
-                            showToast("附近暂时没有其他用户")
-                        }
-                    }
-                } else {
-                    showToast("无法获取位置信息")
-                }
-            }
+            // 跳转到NearbyActivity
+            val intent = Intent(this, NearbyActivity::class.java)
+            startActivity(intent)
         } catch (e: Exception) {
             Log.e("MainActivity", "Error starting nearby people", e)
             showToast("附近的人功能暂时不可用")
