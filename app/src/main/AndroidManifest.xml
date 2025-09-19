@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAndroidApp">
+
         <!-- 登录界面 - 启动Activity -->
         <activity
             android:name=".LoginActivity"
@@ -72,6 +73,28 @@
             android:theme="@style/Theme.MyAndroidApp"
             android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
+
+        <!-- 数据统计界面 -->
+        <activity
+            android:name=".StatisticsActivity"
+            android:exported="false"
+            android:label="数据统计"
+            android:theme="@style/Theme.MyAndroidApp"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- 测试数据统计界面 -->
+        <activity
+            android:name=".TestStatisticsActivity"
+            android:exported="true"
+            android:label="测试数据统计"
+            android:theme="@style/Theme.MyAndroidApp"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

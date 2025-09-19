@@ -49,7 +49,7 @@ class ChatActivity : AppCompatActivity() {
     }
     
     private fun setupTitleBar() { // 设置标题栏
-        chatFriend = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+        chatFriend = if (android.os.Build.VERSION.SDK_INT >= 33) {
             intent.getParcelableExtra(Constants.EXTRA_FRIEND, Friend::class.java)
         } else {
             @Suppress("DEPRECATION")

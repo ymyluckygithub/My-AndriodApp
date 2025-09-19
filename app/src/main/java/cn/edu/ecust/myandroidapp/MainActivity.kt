@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadUserInfo() { // 加载用户信息
         // 从Intent获取用户信息
-        currentUser = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+        currentUser = if (android.os.Build.VERSION.SDK_INT >= 33) {
             intent.getParcelableExtra(Constants.EXTRA_USER, User::class.java)
         } else {
             @Suppress("DEPRECATION")
@@ -457,6 +457,19 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun openStatistics() { // 打开数据统计
+        Log.d("MainActivity", "Opening statistics")
+        try {
+            val intent = Intent(this, StatisticsActivity::class.java)
+            Log.d("MainActivity", "Intent created successfully")
+            startActivity(intent)
+            Log.d("MainActivity", "StatisticsActivity started successfully")
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error opening statistics", e)
+            showToast("打开统计界面失败: ${e.message}")
+        }
+    }
+
     private fun logout() { // 退出登录
         preferenceManager.clearUser()
         val intent = Intent(this, LoginActivity::class.java)
@@ -470,32 +483,54 @@ class MainActivity : AppCompatActivity() {
         val popupMenu = PopupMenu(this, view)
         popupMenu.menuInflater.inflate(R.menu.main_menu, popupMenu.menu)
 
+        // 添加调试信息
+        Log.d("MainActivity", "Menu items count: ${popupMenu.menu.size()}")
+        for (i in 0 until popupMenu.menu.size()) {
+            val item = popupMenu.menu.getItem(i)
+            Log.d("MainActivity", "Menu item $i: ${item.title} (ID: ${item.itemId})")
+        }
+
         popupMenu.setOnMenuItemClickListener { item ->
+            Log.d("MainActivity", "Menu item clicked: ${item.title} (ID: ${item.itemId})")
             when (item.itemId) {
                 R.id.menu_contacts -> {
+                    Log.d("MainActivity", "Opening contacts")
                     openContacts()
                     true
                 }
+                R.id.menu_statistics -> {
+                    Log.d("MainActivity", "Opening statistics")
+                    openStatistics()
+                    true
+                }
                 R.id.menu_settings -> {
+                    Log.d("MainActivity", "Settings clicked")
                     showToast("设置功能")
                     true
                 }
                 R.id.menu_help -> {
+                    Log.d("MainActivity", "Help clicked")
                     showToast("帮助功能")
                     true
                 }
                 R.id.menu_about -> {
+                    Log.d("MainActivity", "About clicked")
                     showToast("关于")
                     true
                 }
                 R.id.menu_logout -> {
+                    Log.d("MainActivity", "Logout clicked")
                     logout()
                     true
                 }
-                else -> false
+                else -> {
+                    Log.d("MainActivity", "Unknown menu item clicked: ${item.itemId}")
+                    false
+                }
             }
         }
 
+        Log.d("MainActivity", "Showing popup menu")
         popupMenu.show()
     }
 
