@@ -104,4 +104,14 @@ object Constants {
         "音乐", "电影", "运动", "旅行", "美食", "读书",
         "游戏", "摄影", "绘画", "舞蹈", "编程", "健身"
     )
+
+    // 位置相关常量
+    const val DEFAULT_SEARCH_RADIUS = 50 // 默认搜索半径（公里）
+    const val MIN_SEARCH_RADIUS = 1 // 最小搜索半径
+    const val MAX_SEARCH_RADIUS = 100 // 最大搜索半径
+    const val LOCATION_CACHE_DURATION = 3600000L // 位置缓存时长（1小时）
+
+    // 默认位置（上海）
+    const val DEFAULT_LATITUDE = 31.2304
+    const val DEFAULT_LONGITUDE = 121.4737
 }

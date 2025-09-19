@@ -165,12 +165,9 @@ class MatchingService private constructor(context: Context) {
         return availableUsers
     }
 
-    // 计算两点之间的距离（简化版本）
+    // 计算两点之间的距离（使用LocationService）
     fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val deltaLat = lat1 - lat2
-        val deltaLon = lon1 - lon2
-        // 简单的直线距离计算，转换为公里
-        return Math.sqrt(deltaLat * deltaLat + deltaLon * deltaLon) * 111
+        return LocationService.calculateDistance(lat1, lon1, lat2, lon2)
     }
 
     // 获取匹配历史
