@@ -114,14 +114,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="8dp">
 
                     <Button
                         android:id="@+id/btn_contacts"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="4dp"
                         android:text="通讯录"
                         android:drawableTop="@drawable/ic_contacts"
                         android:background="@drawable/user_info_background"
@@ -132,11 +132,42 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginHorizontal="4dp"
                         android:text="消息"
                         android:drawableTop="@drawable/ic_message"
                         android:background="@drawable/user_info_background"
                         android:textColor="@color/colorPrimary" />
+
+                </LinearLayout>
+
+                <!-- 匹配功能按钮 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <Button
+                        android:id="@+id/btn_random_match"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:text="随机匹配"
+                        android:drawableTop="@drawable/ic_favorite"
+                        android:background="@drawable/user_info_background"
+                        android:textColor="@color/colorAccent" />
+
+                    <Button
+                        android:id="@+id/btn_nearby_people"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:text="附近的人"
+                        android:drawableTop="@drawable/ic_location"
+                        android:background="@drawable/user_info_background"
+                        android:textColor="@color/colorAccent" />
 
                 </LinearLayout>
 

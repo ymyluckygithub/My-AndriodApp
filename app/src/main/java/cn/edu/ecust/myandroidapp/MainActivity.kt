@@ -22,6 +22,9 @@ import cn.edu.ecust.myandroidapp.model.User
 import cn.edu.ecust.myandroidapp.utils.Constants
 import cn.edu.ecust.myandroidapp.utils.ImageLoader
 import cn.edu.ecust.myandroidapp.utils.PreferenceManager
+import cn.edu.ecust.myandroidapp.utils.LocationHelper
+import cn.edu.ecust.myandroidapp.service.LocationService
+import cn.edu.ecust.myandroidapp.service.MatchingService
 import android.widget.LinearLayout
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvWelcome: TextView
     private lateinit var btnContacts: Button
     private lateinit var btnMessages: Button
+    private lateinit var btnRandomMatch: Button
+    private lateinit var btnNearbyPeople: Button
     private lateinit var lvFriends: ListView
     private lateinit var lvNotifications: ListView
     private lateinit var searchView: SearchView
@@ -41,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var friendAdapter: FriendAdapter
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var preferenceManager: PreferenceManager
+    private lateinit var matchingService: MatchingService
     private var currentUser: User? = null
     private val friendList = mutableListOf<Friend>()
     private val notificationList = mutableListOf<Notification>()
@@ -55,6 +61,9 @@ class MainActivity : AppCompatActivity() {
             Log.d("MainActivity", "Getting preference manager")
             preferenceManager = PreferenceManager.getInstance(this)
 
+            Log.d("MainActivity", "Getting matching service")
+            matchingService = MatchingService.getInstance(this)
+
             Log.d("MainActivity", "Initializing views")
             initViews()
 
@@ -63,6 +72,9 @@ class MainActivity : AppCompatActivity() {
 
             Log.d("MainActivity", "Setting up buttons")
             setupButtons()
+
+            Log.d("MainActivity", "Setting up matching buttons")
+            setupMatchingButtons()
 
             Log.d("MainActivity", "Loading user info")
             loadUserInfo()
@@ -106,6 +118,12 @@ class MainActivity : AppCompatActivity() {
 
             Log.d("MainActivity", "Finding btn_messages")
             btnMessages = findViewById(R.id.btn_messages)
+
+            Log.d("MainActivity", "Finding btn_random_match")
+            btnRandomMatch = findViewById(R.id.btn_random_match)
+
+            Log.d("MainActivity", "Finding btn_nearby_people")
+            btnNearbyPeople = findViewById(R.id.btn_nearby_people)
 
             Log.d("MainActivity", "Finding lv_friends")
             lvFriends = findViewById(R.id.lv_friends)
@@ -153,6 +171,79 @@ class MainActivity : AppCompatActivity() {
         btnMenu.setOnClickListener {
             Log.d("MainActivity", "Menu button clicked")
             showPopupMenu(it) // 显示弹出菜单
+        }
+    }
+
+    private fun setupMatchingButtons() { // 设置匹配功能按钮
+        btnRandomMatch.setOnClickListener {
+            Log.d("MainActivity", "Random match button clicked")
+            showToast("开始随机匹配...")
+            startRandomMatch()
+        }
+
+        btnNearbyPeople.setOnClickListener {
+            Log.d("MainActivity", "Nearby people button clicked")
+            if (LocationService.hasLocationPermission(this)) {
+                showToast("查找附近的人...")
+                startNearbyPeople()
+            } else {
+                LocationHelper.showLocationPermissionDialog(this) {
+                    LocationService.requestLocationPermission(this)
+                }
+            }
+        }
+    }
+
+    private fun startRandomMatch() { // 开始随机匹配
+        try {
+            // 这里将来会跳转到MatchActivity
+            // val intent = Intent(this, MatchActivity::class.java)
+            // startActivity(intent)
+
+            // 临时显示匹配结果
+            currentUser?.let { user ->
+                val matches = matchingService.findRandomMatch(user.id)
+                if (matches.isNotEmpty()) {
+                    showToast("找到 ${matches.size} 个匹配用户！")
+                } else {
+                    showToast("暂时没有找到匹配用户")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error starting random match", e)
+            showToast("匹配功能暂时不可用")
+        }
+    }
+
+    private fun startNearbyPeople() { // 开始查找附近的人
+        try {
+            // 这里将来会跳转到NearbyActivity
+            // val intent = Intent(this, NearbyActivity::class.java)
+            // startActivity(intent)
+
+            // 临时获取位置并显示附近用户
+            LocationHelper.getCurrentLocationWithUI(this) { location ->
+                if (location != null) {
+                    currentUser?.let { user ->
+                        val nearbyUsers = matchingService.findNearbyUsers(
+                            user.id,
+                            location.latitude,
+                            location.longitude,
+                            Constants.DEFAULT_SEARCH_RADIUS
+                        )
+                        if (nearbyUsers.isNotEmpty()) {
+                            showToast("找到 ${nearbyUsers.size} 个附近用户！")
+                        } else {
+                            showToast("附近暂时没有其他用户")
+                        }
+                    }
+                } else {
+                    showToast("无法获取位置信息")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error starting nearby people", e)
+            showToast("附近的人功能暂时不可用")
         }
     }
 
@@ -441,5 +532,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun showToast(message: String) { // 显示提示
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    // 处理权限请求结果
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        LocationHelper.handleLocationPermissionResult(
+            this, requestCode, permissions, grantResults,
+            onGranted = {
+                showToast("位置权限已授权，可以查找附近的人")
+                startNearbyPeople()
+            },
+            onDenied = {
+                showToast("位置权限被拒绝，无法使用附近的人功能")
+            }
+        )
     }
 }
