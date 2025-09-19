@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import cn.edu.ecust.myandroidapp.model.User
 import cn.edu.ecust.myandroidapp.model.MatchHistory
+import cn.edu.ecust.myandroidapp.model.Friend
 import cn.edu.ecust.myandroidapp.utils.Constants
 import cn.edu.ecust.myandroidapp.utils.MockDataGenerator
 import java.util.UUID
@@ -143,8 +144,26 @@ class MatchingService private constructor(context: Context) {
         
         Log.d(tag, "Match result saved: ${matchHistory.id}, accepted: $isAccepted")
         
-        // 这里应该保存到数据库，现在只是模拟
+        // 保存匹配记录到数据库
         // TODO: 集成数据库DAO保存匹配记录
+        
+        // 如果用户点击了“喜欢”，则将对方添加到好友列表
+        if (isAccepted) {
+            // 模拟生成好友信息
+            val friend = Friend(
+                id = matchedUserId,
+                username = "模拟好友",
+                nickname = "",
+                avatarResId = 0,
+                avatarPath = "",
+                isOnline = false,
+                lastSeenTime = 0L,
+                signature = ""
+            )
+            
+            // TODO: 集成数据库DAO保存好友信息
+            Log.d(tag, "Friend added: ${friend.id}")
+        }
         
         return matchHistory
     }

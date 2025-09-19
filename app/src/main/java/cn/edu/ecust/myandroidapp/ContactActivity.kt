@@ -156,7 +156,7 @@ class ContactActivity : AppCompatActivity() {
     }
     
     private fun confirmDeleteContact(friend: Friend) { // 确认删除联系人
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(this, R.style.AlertDialogTheme)
             .setTitle("删除联系人")
             .setMessage("确定要删除联系人 ${friend.getDisplayName()} 吗？")
             .setPositiveButton("删除") { _, _ ->
